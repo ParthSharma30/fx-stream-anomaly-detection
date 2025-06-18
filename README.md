@@ -37,8 +37,10 @@ fx-anomaly/
 │   ├── docker-compose.yml
 │   └── init.sql/
 ├── tests/                 # Unit tests
-├── run_full_pipeline.py   # Main pipeline runner
+├── run_pipeline.py        # Main pipeline runner (recommended)
 ├── run_working_pipeline.py # Simplified working pipeline
+├── run_full_pipeline.py   # Full Kafka streaming pipeline
+├── PIPELINE_GUIDE.md      # Detailed pipeline selection guide
 ├── setup.py              # Project setup
 ├── requirements.txt      # Python dependencies
 └── README.md            # This file
@@ -108,25 +110,18 @@ python run_full_pipeline.py
 - ⚠️ **Production-ready** - full streaming pipeline with all components
 - ⚠️ **May have Kafka connectivity issues** - requires proper Kafka setup
 
-### Quick Start (Recommended)
+### What Happens When You Run the Pipeline
 
-```bash
-python run_working_pipeline.py
-```
-
-This will:
+The recommended pipeline will:
 1. Start Docker infrastructure (Kafka + PostgreSQL)
 2. Process FX data directly (bypassing Kafka consumer issues)
 3. Detect anomalies in real-time
 4. Store results in database
 5. Start web dashboard at http://localhost:5000
 
-### Option 2: Simplified Working Pipeline
-```bash
-python run_working_pipeline.py
-```
+### Individual Components (Advanced)
 
-### Option 3: Individual Components
+If you want to run components separately:
 
 1. **Start the producer** (in one terminal):
    ```bash
@@ -142,6 +137,10 @@ python run_working_pipeline.py
    ```bash
    python dashboard/app.py
    ```
+
+### 📖 Need More Details?
+
+For a complete guide on choosing between pipelines, see: **[PIPELINE_GUIDE.md](PIPELINE_GUIDE.md)**
 
 ## 📊 How It Works
 

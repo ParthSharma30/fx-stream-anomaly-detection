@@ -79,6 +79,17 @@ def run_pipeline(choice):
 def main():
     """Main function."""
     print_banner()
+    
+    # Check for help flag
+    if len(sys.argv) > 1 and sys.argv[1] in ['--help', '-h', 'help']:
+        print_options()
+        print("\n💡 Usage:")
+        print("   python run_pipeline.py          # Interactive menu")
+        print("   python run_pipeline.py 1        # Run working pipeline")
+        print("   python run_pipeline.py 2        # Run full pipeline")
+        print("   python run_pipeline.py --help   # Show this help")
+        return
+    
     print_options()
     
     # Check if user provided command line argument
@@ -86,6 +97,7 @@ def main():
         choice = sys.argv[1]
         if choice not in ['1', '2']:
             print("❌ Invalid choice. Use 1 for working pipeline or 2 for full pipeline.")
+            print("💡 Run 'python run_pipeline.py --help' for usage information.")
             sys.exit(1)
     else:
         choice = get_user_choice()
